@@ -1,0 +1,60 @@
+
+@model Hotel.Web.Models.Habitacion
+
+@{
+    ViewData["Title"] = "Desactivar habitación";
+}
+
+<div class="hotel-page">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">HABITACIONES</span>
+            <h1>Desactivar habitación</h1>
+            <p>Confirma la desactivación de la habitación.</p>
+        </div>
+    </div>
+
+    <div class="hotel-card form-card">
+        <div class="warning-box">
+            <h3>¿Desactivar habitación @Model.Numero?</h3>
+
+            <p>
+                Esta habitación dejará de aparecer en el listado
+                de habitaciones activas y en las búsquedas
+                de disponibilidad.
+            </p>
+
+            <p>
+                No se eliminará de la base de datos.
+                Su historial de reservas se conservará.
+            </p>
+        </div>
+
+        <div class="detail-row">
+            <span>Habitación</span>
+            <strong>@Model.Numero</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Tipo</span>
+            <strong>@Model.IdTipoHabitacionNavigation.Nombre</strong>
+        </div>
+
+        <form asp-action="Delete"
+              asp-route-id="@Model.IdHabitacion"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions">
+                <a asp-action="Index" class="btn-hotel-light">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn-hotel-danger">
+                    Confirmar desactivación
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+# Archivos compilados de .NET
+bin/
+obj/
+Debug/
+Release/
+
+# Configuración de Visual Studio y VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+*.cache
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración local y secretos
+appsettings.Development.json
+appsettings.Local.json
+.env
+.env.*
+
+# Publicaciones
+publish/
+artifacts/
+
+# Paquetes NuGet
+*.nupkg
+packages/
+
+# Resultados de pruebas
+TestResults/
+coverage/

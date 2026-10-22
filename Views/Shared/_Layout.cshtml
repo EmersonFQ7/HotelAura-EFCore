@@ -1,0 +1,90 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Hotel Aura</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/hotel.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+    <div class="hotel-layout">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="hotel-sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-symbol">✦</div>
+                <h2>HOTEL AURA</h2>
+                <span>BOUTIQUE & SUITES</span>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a asp-controller="Home"
+                   asp-action="Index">
+                    <span>⌂</span> Inicio
+                </a>
+
+                <a asp-controller="Habitaciones"
+                   asp-action="Index">
+                    <span>▣</span> Habitaciones
+                </a>
+
+                <a asp-controller="Reservas"
+                   asp-action="Disponibles">
+                    <span>▦</span> Disponibilidad
+                </a>
+
+                <a asp-controller="Reservas"
+                   asp-action="Index">
+                    <span>▤</span> Reservas
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Una estadía que se siente como en casa.</p>
+            </div>
+
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="hotel-main">
+
+            <header class="hotel-topbar">
+                <span>HOTEL AURA</span>
+
+                <div class="topbar-user">
+                    <span>Administración</span>
+                    <div class="user-avatar">A</div>
+                </div>
+            </header>
+
+            <main class="hotel-content">
+                @RenderBody()
+            </main>
+
+            <footer class="hotel-footer">
+                © @DateTime.Now.Year Hotel Aura
+                — Sistema de gestión hotelera
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

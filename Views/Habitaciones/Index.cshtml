@@ -1,0 +1,127 @@
+
+@model IEnumerable<Hotel.Web.Models.Habitacion>
+
+@{
+    ViewData["Title"] = "Habitaciones";
+}
+
+<div class="hotel-page">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GESTIÓN HOTELERA</span>
+            <h1>Habitaciones</h1>
+            <p>Administra las habitaciones de Hotel Aura.</p>
+        </div>
+
+        <a asp-action="Create" class="btn-hotel-primary">
+            + Registrar habitación
+        </a>
+    </div>
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="hotel-alert">
+            @TempData["Exito"]
+        </div>
+    }
+
+    <div class="hotel-card">
+        <h3>Filtrar habitaciones</h3>
+
+        <form asp-action="Index" method="get"
+              class="hotel-filter">
+
+            <div class="form-group">
+                <label>Tipo de habitación</label>
+                <select name="idTipo"
+                        asp-items="ViewBag.Tipos"
+                        class="hotel-input">
+                    <option value="">Todos los tipos</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-hotel-primary">
+                Filtrar
+            </button>
+
+            <a asp-action="Index" class="btn-hotel-light">
+                Limpiar
+            </a>
+        </form>
+    </div>
+
+    <div class="hotel-card">
+        <div class="table-heading">
+            <h3>Listado de habitaciones</h3>
+            <span class="count-label">
+                @Model.Count() habitaciones
+            </span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="hotel-table">
+                <thead>
+                    <tr>
+                        <th>NÚMERO</th>
+                        <th>PISO</th>
+                        <th>TIPO</th>
+                        <th>PRECIO / NOCHE</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>#@item.Numero</strong>
+                            </td>
+                            <td>Piso @item.Piso</td>
+                            <td>
+                                @item.IdTipoHabitacionNavigation.Nombre
+                            </td>
+                            <td class="price-cell">
+                                S/ @item.IdTipoHabitacionNavigation.PrecioNoche.ToString("N2")
+                            </td>
+                            <td>
+                                <span class="status-active">
+                                    Activa
+                                </span>
+                            </td>
+                            <td>
+                                <div class="table-actions">
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.IdHabitacion"
+                                       class="action-link">
+                                        Detalles
+                                    </a>
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@item.IdHabitacion"
+                                       class="action-link">
+                                        Editar
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@item.IdHabitacion"
+                                       class="action-danger">
+                                        Desactivar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state">
+                No se encontraron habitaciones activas.
+            </div>
+        }
+    </div>
+</div>

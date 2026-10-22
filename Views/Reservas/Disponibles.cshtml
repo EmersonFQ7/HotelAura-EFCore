@@ -1,0 +1,113 @@
+
+@model IEnumerable<Hotel.Web.Models.Habitacion>
+
+@{
+    ViewData["Title"] = "Disponibilidad";
+    DateOnly? ingreso = ViewBag.Ingreso;
+    DateOnly? salida = ViewBag.Salida;
+    int noches = ViewBag.Noches ?? 0;
+    bool buscado = ingreso.HasValue && salida.HasValue &&
+                   ViewData.ModelState.IsValid;
+}
+
+<div class="hotel-page">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">HOTEL AURA</span>
+            <h1>Disponibilidad</h1>
+            <p>Encuentra habitaciones libres para tus fechas.</p>
+        </div>
+    </div>
+
+    <div class="hotel-card">
+        <h3>Buscar disponibilidad</h3>
+
+        <form asp-action="Disponibles"
+              method="get"
+              class="hotel-filter">
+
+            <div class="form-group">
+                <label>Fecha de ingreso</label>
+                <input type="date"
+                       name="ingreso"
+                       value="@(ingreso?.ToString("yyyy-MM-dd"))"
+                       class="hotel-input"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de salida</label>
+                <input type="date"
+                       name="salida"
+                       value="@(salida?.ToString("yyyy-MM-dd"))"
+                       class="hotel-input"
+                       required />
+            </div>
+
+            <button type="submit" class="btn-hotel-primary">
+                Buscar habitaciones
+            </button>
+        </form>
+
+        <div asp-validation-summary="All"
+             class="text-danger"></div>
+    </div>
+
+    @if (buscado)
+    {
+        <div class="hotel-card">
+
+            <div class="table-heading">
+                <h3>Habitaciones disponibles</h3>
+                <span class="count-label">
+                    @noches noche(s)
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="hotel-table">
+                    <thead>
+                        <tr>
+                            <th>HABITACIÓN</th>
+                            <th>TIPO</th>
+                            <th>CAPACIDAD</th>
+                            <th>PRECIO / NOCHE</th>
+                            <th>TOTAL ESTIMADO</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var h in Model)
+                        {
+                            var precio =
+                                h.IdTipoHabitacionNavigation.PrecioNoche;
+
+                            var total = precio * noches;
+
+                            <tr>
+                                <td><strong>#@h.Numero</strong></td>
+                                <td>@h.IdTipoHabitacionNavigation.Nombre</td>
+                                <td>
+                                    @h.IdTipoHabitacionNavigation.Capacidad
+                                    persona(s)
+                                </td>
+                                <td>S/ @precio.ToString("N2")</td>
+                                <td class="price-cell">
+                                    S/ @total.ToString("N2")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="empty-state">
+                    No hay habitaciones libres en estas fechas.
+                </div>
+            }
+        </div>
+    }
+</div>

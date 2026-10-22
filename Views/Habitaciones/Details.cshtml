@@ -1,0 +1,69 @@
+
+@model Hotel.Web.Models.Habitacion
+
+@{
+    ViewData["Title"] = "Detalles de habitación";
+}
+
+<div class="hotel-page">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">HABITACIONES</span>
+            <h1>Habitación @Model.Numero</h1>
+            <p>Información de la habitación seleccionada.</p>
+        </div>
+    </div>
+
+    <div class="hotel-card form-card">
+        <h3>Información general</h3>
+
+        <div class="detail-row">
+            <span>Número</span>
+            <strong>@Model.Numero</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Piso</span>
+            <strong>@Model.Piso</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Tipo de habitación</span>
+            <strong>@Model.IdTipoHabitacionNavigation.Nombre</strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Capacidad</span>
+            <strong>
+                @Model.IdTipoHabitacionNavigation.Capacidad personas
+            </strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Precio por noche</span>
+            <strong class="price-cell">
+                S/ @Model.IdTipoHabitacionNavigation.PrecioNoche.ToString("N2")
+            </strong>
+        </div>
+
+        <div class="detail-row">
+            <span>Estado</span>
+            <strong>@(Model.Activo ? "Activa" : "Inactiva")</strong>
+        </div>
+
+        <div class="form-actions">
+            <a asp-action="Index" class="btn-hotel-light">
+                Volver
+            </a>
+
+            @if (Model.Activo)
+            {
+                <a asp-action="Edit"
+                   asp-route-id="@Model.IdHabitacion"
+                   class="btn-hotel-primary">
+                    Editar habitación
+                </a>
+            }
+        </div>
+    </div>
+</div>

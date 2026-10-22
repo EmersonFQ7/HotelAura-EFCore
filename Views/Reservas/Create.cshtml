@@ -1,0 +1,108 @@
+@model Hotel.Web.Models.Reserva
+
+@{
+    ViewData["Title"] = "Nueva reserva";
+}
+
+<div class="hotel-page">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GESTIÓN HOTELERA</span>
+            <h1>Nueva reserva</h1>
+            <p>Registra una nueva estadía en Hotel Aura.</p>
+        </div>
+    </div>
+
+    <div class="hotel-card form-card">
+        <h3>Información de la reserva</h3>
+
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="IdHuesped">Huésped</label>
+                <select asp-for="IdHuesped"
+                        asp-items="ViewBag.Huespedes"
+                        class="hotel-input">
+                    <option value="">Seleccionar huésped</option>
+                </select>
+                <span asp-validation-for="IdHuesped"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdHabitacion">Habitación</label>
+                <select asp-for="IdHabitacion"
+                        asp-items="ViewBag.Habitaciones"
+                        class="hotel-input">
+                    <option value="">Seleccionar habitación</option>
+                </select>
+                <span asp-validation-for="IdHabitacion"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FechaIngreso">
+                    Fecha de ingreso
+                </label>
+                <input asp-for="FechaIngreso"
+                       type="date"
+                       class="hotel-input"
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="FechaIngreso"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FechaSalida">
+                    Fecha de salida
+                </label>
+                <input asp-for="FechaSalida"
+                       type="date"
+                       class="hotel-input"
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="FechaSalida"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Observaciones">
+                    Observaciones (opcional)
+                </label>
+                <textarea asp-for="Observaciones"
+                          class="hotel-input"
+                          rows="4"
+                          maxlength="200"
+                          placeholder="Escribe alguna observación de la reserva..."></textarea>
+                <span asp-validation-for="Observaciones"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="warning-box">
+                <strong>Estado inicial: Pendiente</strong>
+                <p class="mb-0">
+                    El sistema verificará que la habitación
+                    esté disponible antes de guardar la reserva.
+                </p>
+            </div>
+
+            <div class="form-actions">
+                <a asp-action="Index" class="btn-hotel-light">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn-hotel-primary">
+                    Registrar reserva
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

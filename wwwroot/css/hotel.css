@@ -1,0 +1,607 @@
+
+:root {
+    --hotel-bg: #f7f4ee;
+    --hotel-card: #ffffff;
+    --hotel-brown: #49372f;
+    --hotel-gold: #b78d60;
+    --hotel-border: #e9e1d6;
+    --hotel-text: #49372f;
+    --hotel-muted: #8b8179;
+}
+
+body {
+    background: var(--hotel-bg);
+    color: var(--hotel-text);
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.hotel-page {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 35px 12px;
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.page-heading h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--hotel-brown);
+    margin: 8px 0;
+}
+
+.page-heading p {
+    color: var(--hotel-muted);
+    margin: 0;
+}
+
+.eyebrow {
+    color: var(--hotel-gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.hotel-card {
+    background: var(--hotel-card);
+    border: 1px solid var(--hotel-border);
+    border-radius: 18px;
+    padding: 26px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 24px rgba(73,55,47,.04);
+}
+
+.hotel-card h3 {
+    font-size: 19px;
+    font-weight: 650;
+    margin-bottom: 22px;
+}
+
+.hotel-filter {
+    display: flex;
+    align-items: end;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    margin-bottom: 22px;
+    flex: 1;
+    min-width: 180px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.hotel-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: #fcfaf7;
+    border: 1px solid #ded5c9;
+    border-radius: 9px;
+    color: var(--hotel-text);
+    outline: none;
+}
+
+.hotel-input:focus {
+    border-color: var(--hotel-gold);
+    box-shadow: 0 0 0 3px rgba(183,141,96,.12);
+}
+
+.btn-hotel-primary,
+.btn-hotel-light,
+.btn-hotel-danger {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-hotel-primary {
+    background: var(--hotel-brown);
+    color: white;
+}
+
+.btn-hotel-primary:hover {
+    background: #654b3c;
+    color: white;
+}
+
+.btn-hotel-light {
+    background: #f2ede6;
+    color: var(--hotel-brown);
+}
+
+.btn-hotel-light:hover {
+    background: #e8dfd3;
+    color: var(--hotel-brown);
+}
+
+.btn-hotel-danger {
+    background: #a64747;
+    color: white;
+}
+
+.btn-hotel-danger:hover {
+    background: #8d3535;
+}
+
+.table-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.table-heading h3 {
+    margin: 0;
+}
+
+.count-label {
+    background: #f3ede5;
+    padding: 7px 13px;
+    border-radius: 20px;
+    color: var(--hotel-brown);
+    font-size: 12px;
+}
+
+.hotel-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.hotel-table thead {
+    background: #f8f5f0;
+}
+
+.hotel-table th {
+    padding: 16px;
+    color: #877668;
+    font-size: 11px;
+    letter-spacing: .8px;
+    text-align: left;
+}
+
+.hotel-table td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #eee8df;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.hotel-table tbody tr:hover {
+    background: #fdfbf8;
+}
+
+.price-cell {
+    font-weight: 700;
+    color: var(--hotel-brown);
+}
+
+.status-active {
+    background: #e5f2e9;
+    color: #287646;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.table-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.action-link,
+.action-danger {
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.action-link {
+    color: #816044;
+}
+
+.action-danger {
+    color: #b14d4d;
+}
+
+.action-link:hover,
+.action-danger:hover {
+    text-decoration: underline;
+}
+
+.form-card {
+    max-width: 680px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hotel-border);
+}
+
+.detail-row span {
+    color: var(--hotel-muted);
+}
+
+.hotel-alert {
+    background: #e8f4e9;
+    color: #28643b;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.warning-box {
+    background: #fff7ed;
+    border: 1px solid #f0d8bb;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.warning-box p {
+    color: #80694f;
+}
+
+.empty-state {
+    padding: 35px;
+    text-align: center;
+    color: var(--hotel-muted);
+}
+
+.text-danger {
+    color: #b14d4d !important;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .hotel-page {
+        padding: 20px 8px;
+    }
+
+    .page-heading h1 {
+        font-size: 28px;
+    }
+
+    .hotel-card {
+        padding: 18px;
+    }
+
+    .hotel-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hotel-filter .form-group {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .hotel-table {
+        min-width: 760px;
+    }
+}
+
+/* ===== ESTRUCTURA HOTEL AURA ===== */
+
+.hotel-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f7f4ee;
+}
+
+/* Menú lateral */
+.hotel-sidebar {
+    width: 250px;
+    min-width: 250px;
+    background: #34271f;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar-brand {
+    padding: 35px 15px 45px;
+    text-align: center;
+}
+
+.brand-symbol {
+    font-size: 35px;
+    color: #d9c4a3;
+    margin-bottom: 10px;
+}
+
+.sidebar-brand h2 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.sidebar-brand span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #d9c4a3;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 18px;
+    color: #f2e9df;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.sidebar-nav a span {
+    font-size: 22px;
+}
+
+.sidebar-nav a:hover {
+    background: #70543e;
+    color: white;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding: 30px;
+    color: #d9c4a3;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* Contenido */
+.hotel-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-topbar {
+    height: 75px;
+    background: #fffdf9;
+    border-bottom: 1px solid #eee5db;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+}
+
+.hotel-topbar > span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #9a8066;
+}
+
+.topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #6d5948;
+    font-size: 14px;
+}
+
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #49372f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.hotel-content {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.hotel-footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #9a8c80;
+}
+
+/* Tabla y botones */
+.hotel-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.hotel-table thead th {
+    background: #f5efe7;
+}
+
+.hotel-table tbody tr:nth-child(even) {
+    background: #fcfaf7;
+}
+
+.hotel-table tbody tr:hover {
+    background: #f6efe6;
+}
+
+.action-link,
+.action-danger {
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.action-link {
+    background: #f2e7d9;
+    color: #745338;
+}
+
+.action-danger {
+    background: #fbe6e6;
+    color: #b33b3b;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 900px) {
+    .hotel-sidebar {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .hotel-content {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 650px) {
+    .hotel-layout {
+        flex-direction: column;
+    }
+
+    .hotel-sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+        height: auto;
+        position: static;
+    }
+
+    .sidebar-brand {
+        padding: 20px;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 15px;
+    }
+
+    .sidebar-nav a {
+        white-space: nowrap;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .hotel-topbar {
+        padding: 0 15px;
+    }
+}
+
+
+/* ===== RESERVAS HOTEL AURA ===== */
+
+.reserva-estado {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.estado-pendiente {
+    background: #fff1d6;
+    color: #966312;
+}
+
+.estado-confirmada {
+    background: #e1f3e7;
+    color: #267647;
+}
+
+.estado-cancelada {
+    background: #fce4e4;
+    color: #a33c3c;
+}
+
+.estado-finalizada {
+    background: #e8e9ed;
+    color: #565d6c;
+}
+
+.hotel-table td,
+.hotel-table th {
+    vertical-align: middle;
+}
+
+.hotel-table form {
+    margin: 0;
+}
+
+.hotel-card .text-danger {
+    display: block;
+    margin-top: 6px;
+}
+
+.hotel-input,
+.btn-hotel-primary,
+.btn-hotel-light,
+.btn-hotel-danger {
+    min-height: 43px;
+}
+
+.form-card {
+    max-width: 720px;
+}
+
+@media (max-width: 1100px) {
+    .hotel-table {
+        min-width: 900px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}

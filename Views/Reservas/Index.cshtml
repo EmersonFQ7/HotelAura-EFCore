@@ -1,0 +1,122 @@
+
+@model IEnumerable<Hotel.Web.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Reservas";
+}
+
+<div class="hotel-page">
+
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GESTIÓN HOTELERA</span>
+            <h1>Reservas</h1>
+            <p>Consulta y administra las reservas del hotel.</p>
+        </div>
+
+        <a asp-action="Create" class="btn-hotel-primary">
+            + Nueva reserva
+        </a>
+    </div>
+
+    @if (TempData["Exito"] != null)
+    {
+        <div class="hotel-alert">@TempData["Exito"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="warning-box">@TempData["Error"]</div>
+    }
+
+    <div class="hotel-card">
+        <div class="table-heading">
+            <h3>Listado de reservas</h3>
+            <span class="count-label">
+                @Model.Count() reservas
+            </span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="hotel-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>HUÉSPED</th>
+                        <th>HABITACIÓN</th>
+                        <th>INGRESO</th>
+                        <th>SALIDA</th>
+                        <th>ESTADO</th>
+                        <th>TOTAL</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        var noches = r.FechaSalida.DayNumber -
+                                     r.FechaIngreso.DayNumber;
+
+                        var total = noches *
+                            r.IdHabitacionNavigation
+                             .IdTipoHabitacionNavigation.PrecioNoche;
+
+                        <tr>
+                            <td>#@r.IdReserva</td>
+
+                            <td>
+                                @r.IdHuespedNavigation.Nombres
+                                @r.IdHuespedNavigation.Apellidos
+                            </td>
+
+                            <td>
+                                #@r.IdHabitacionNavigation.Numero
+                            </td>
+
+                            <td>@r.FechaIngreso.ToString("dd/MM/yyyy")</td>
+                            <td>@r.FechaSalida.ToString("dd/MM/yyyy")</td>
+
+                            <td>
+                                <span class="reserva-estado
+                                    @(r.Estado == "Cancelada" ? "estado-cancelada" :
+                                      r.Estado == "Confirmada" ? "estado-confirmada" :
+                                      r.Estado == "Finalizada" ? "estado-finalizada" :
+                                      "estado-pendiente")">
+                                    @r.Estado
+                                </span>
+                            </td>
+
+                            <td class="price-cell">
+                                S/ @total.ToString("N2")
+                            </td>
+
+                            <td>
+                                @if (r.Estado == "Pendiente" ||
+                                     r.Estado == "Confirmada")
+                                {
+                                    <form asp-action="Cancelar"
+                                          asp-route-id="@r.IdReserva"
+                                          method="post"
+                                          onsubmit="return confirm('¿Cancelar esta reserva?');">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <button type="submit"
+                                                class="action-danger border-0">
+                                            Cancelar
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">—</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

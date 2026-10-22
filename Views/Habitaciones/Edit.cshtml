@@ -1,0 +1,76 @@
+
+@model Hotel.Web.Models.Habitacion
+
+@{
+    ViewData["Title"] = "Editar habitación";
+}
+
+<div class="hotel-page">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">HABITACIONES</span>
+            <h1>Editar habitación</h1>
+            <p>Actualiza los datos de la habitación.</p>
+        </div>
+    </div>
+
+    <div class="hotel-card form-card">
+        <form asp-action="Edit"
+              asp-route-id="@Model.IdHabitacion"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" asp-for="IdHabitacion" />
+
+            <div asp-validation-summary="ModelOnly"
+                 class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Numero">Número</label>
+                <input asp-for="Numero" class="hotel-input" />
+                <span asp-validation-for="Numero"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Piso">Piso</label>
+                <input asp-for="Piso"
+                       type="number"
+                       min="1"
+                       class="hotel-input" />
+                <span asp-validation-for="Piso"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdTipoHabitacion">
+                    Tipo de habitación
+                </label>
+
+                <select asp-for="IdTipoHabitacion"
+                        asp-items="ViewBag.Tipos"
+                        class="hotel-input">
+                    <option value="">Seleccionar tipo</option>
+                </select>
+
+                <span asp-validation-for="IdTipoHabitacion"
+                      class="text-danger"></span>
+            </div>
+
+            <div class="form-actions">
+                <a asp-action="Index" class="btn-hotel-light">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn-hotel-primary">
+                    Guardar cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
